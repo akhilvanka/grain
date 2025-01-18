@@ -1,0 +1,6 @@
+# ignore files in treesitter
+/rtp/treesitter/*
+
+# ignore files in lazy and vscode
+lazy-lock.json
+.vscode/*
