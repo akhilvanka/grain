@@ -24,10 +24,10 @@
     ruler no
     laststatus 3
     showtabline 0
-    number no
+    number on
     numberwidth 1
     relativenumber no
-    signcolumn "yes"
+    signcolumn "number"
 
     ; window, buffer, tabs    
     switchbuf "newtab"
@@ -47,6 +47,9 @@
 
     ; colorscheme
     background "dark"
+
+    ; completeopt
+    completeopt "menuone,noselect"
 
     ; remove intro
     +shortmess "sI")
