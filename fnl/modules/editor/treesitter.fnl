@@ -1,7 +1,7 @@
 (fn [] 
         ((. (require :nvim-treesitter.configs) :setup) 
         {
-            :ensure_installed [ :c :java ]
+            :ensure_installed [ :c :java :latex ]
             :parser_install_dir "~/.config/nvim/rtp/treesitter"
             :highlight {:enable true}
             :indent {:enable true}
