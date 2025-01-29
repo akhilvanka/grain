@@ -1,47 +1,20 @@
-(local kind-icons {:Class "󰠱"
-                   :Color ""
-                   :Constant ""
-                   :Constructor ""
-                   :Enum ""
-                   :EnumMember ""
-                   :Event ""
-                   :Field "󰇽"
-                   :File ""
-                   :Folder ""
-                   :Function "󰊕"
-                   :Interface ""
-                   :Keyword ""
-                   :Method ""
-                   :Module ""
-                   :Operator "󰆕"
-                   :Property ""
-                   :Reference ""
-                   :Snippet ""
-                   :Struct ""
-                   :Text ""
-                   :TypeParameter "󰅲"
-                   :Unit ""
-                   :Value ""
-                   :Variable "󰂡"})
-
 (local cmp (require :cmp))
+(local mini (require :mini.icons))
 
 (cmp.setup
-  {:window {:completion {:border :solid}
-            :documentation {:border :solid}}   
-   :formatting {:fields [:abbr :menu :kind]
-                :format (fn [entry vim-item]
-                          (set vim-item.kind
-                               (. kind-icons vim-item.kind))
-                          (set vim-item.menu
-                               (. {:buffer "[Buf]"
-                                   :cmdline "[Cmd]"
-                                   :luasnip "[Snip]"
-                                   :nvim_lsp "[Lsp]"
-                                   :nvim_lua "[Lua]"
-                                   :path "[Path]"}
-                                  entry.source.name))
-                          vim-item)}
+  {:window {:documentation {:border :solid}
+                      :completion {:col_offset (- 3)
+                                   :side_padding 0
+                                   :winhighlight "Normal:NormalFloat,NormalFloat:Pmenu,Pmenu:NormalFloat"}}
+             :view {:entries {:name :custom :selection_order :near_cursor}}
+   :experimental {:ghost_text true}   
+   :formatting {:fields {1 :kind 2 :abbr 3 :menu}
+                          :format (fn [_ vim-item]
+                                    (set vim-item.menu vim-item.kind)
+                                    (var (icon hl is-default) ((. (require :mini.icons) :get) :lsp vim-item.kind))
+                                    (set vim-item.kind icon)
+                                    (set vim-item.kind_hl_group hl)	
+                                    vim-item)}
    :sources ((. cmp.config :sources)
              [{:name :path}
               {:name :buffer}
