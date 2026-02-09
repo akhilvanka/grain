@@ -14,5 +14,7 @@
  {:automatic_installation true
   :ensure_installed servers})
 
-(each [_ a (ipairs servers)]
-  ((. (require :lspconfig) a :setup) {:capabilities capabilities}))
+;; Use vim.lsp.config (Neovim 0.11+) instead of deprecated lspconfig
+(each [_ server (ipairs servers)]
+  (vim.lsp.config server {:capabilities capabilities})
+  (vim.lsp.enable server))

@@ -26,7 +26,7 @@
                         :bugreport
                         :ftplugin])
 
-(local default-providers [:node :perl :ruby])
+(local default-providers [:node :perl :ruby :python3])
 
 (each [_ plugin (pairs default-plugins)] (tset vim.g (.. :loaded_ plugin) 1))
 (each [_ provider (ipairs default-providers)]

@@ -10,9 +10,9 @@
     :opts (require :modules.ui.modes)
 )
 
-(use stevearc/oil.nvim :event :VeryLazy 
+(use stevearc/oil.nvim :event :VeryLazy
     :opts (require :modules.ui.oil)
-    :dependencies [:echasnovski/mini.icons]
+    :dependencies [{1 :echasnovski/mini.icons :opts {}}]
 )
 
 (use folke/noice.nvim :enabled false :event :VeryLazy
@@ -20,7 +20,7 @@
     :dependencies [:MunifTanjim/nui.nvim]
 )
 
-(use echasnovski/mini.icons :event :VeryLazy :opts {})
+; mini.icons is already a dependency of oil.nvim, no need to load separately
 
 ; custom statusline in lua
 (require :modules.ui.status)

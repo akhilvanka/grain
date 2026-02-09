@@ -3,7 +3,7 @@
 
 ; setup LSP 
 (use nvim-treesitter/nvim-treesitter :event :VeryLazy :build ":TSUpdate"
-    :config (require :modules.editor.treesitter)
+    :opts (require :modules.editor.treesitter)
 )
 
 (use hrsh7th/nvim-cmp :event :VeryLazy 
@@ -16,8 +16,8 @@
     :config (fn [] (require :modules.editor.mason))
 )
 
-; setup latex 
-(use lervag/vimtex :lazy false 
+; setup latex - lazy load for tex files only
+(use lervag/vimtex :ft [:tex :latex :plaintex]
     :init (require :modules.editor.latex)
 )
 
